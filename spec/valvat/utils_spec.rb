@@ -66,9 +66,13 @@ describe Valvat::Utils do
     end
   end
 
-  describe "#iso_country_to_vat_country" do
-    it "returns VAT country on greek iso country code 'GR'" do
-      expect(Valvat::Utils.iso_country_to_vat_country("GR")).to eql("EL")
+  describe '#iso_country_to_vat_country' do
+    it "returns VAT country EL on greek iso country code 'GR'" do
+      expect(described_class.iso_country_to_vat_country('GR')).to eql('EL')
+    end
+
+    it "returns VAT country XI on british iso country code 'GB'" do
+      expect(described_class.iso_country_to_vat_country('GB')).to eql('XI')
     end
 
     Valvat::Utils::EU_MEMBER_STATES.each do |c|
