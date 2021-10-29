@@ -12,13 +12,12 @@ class Valvat
       end
 
       def perform
-        begin
-          Response.new(
-            client.call(action, message: message, message_tag: message_tag)
-          )
-        rescue Savon::SOAPFault => fault
-          Fault.new(fault)
-        end
+      begin
+        Response.new(
+          client.call(action, message: message, message_tag: message_tag, soap_action: nil)
+        )
+      rescue Savon::SOAPFault => e
+        Fault.new(e)
       end
 
       private
